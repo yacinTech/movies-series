@@ -20,6 +20,23 @@ header {
 }
 
 /* العنوان مع الأيقونة */
+header a {
+  text-decoration: none;
+  color: #f39c12; /* لون برتقالي ذهبي جذاب */
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+header a:hover {
+  color: #ffd700; /* ذهبي فاتح عند التحويم */
+  transform: scale(1.05);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
 header h1 {
   display: flex;
   align-items: center;
