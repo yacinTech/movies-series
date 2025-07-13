@@ -2,6 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>تفاصيل الفيلم</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <style>
@@ -14,31 +16,7 @@
       background: #121212;
       color: #eee;
     }
-    .movie-details {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-    .movie-details img {
-      width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
-    }
-    .details-text {
-      flex: 1;
-    }
-    h1 {
-      margin-bottom: 10px;
-      color: #f39c12;
-    }
-    p {
-      line-height: 1.6;
-    }
-    .info {
-      margin: 8px 0;
-      font-weight: bold;
-    }
+
     a.back {
       display: inline-block;
       margin-bottom: 20px;
@@ -46,8 +24,71 @@
       text-decoration: none;
       font-weight: bold;
     }
+
     a.back:hover {
       text-decoration: underline;
+    }
+
+    .movie-details {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .movie-details img {
+      width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
+    }
+
+    .details-text {
+      flex: 1;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #f39c12;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .info {
+      margin: 8px 0;
+      font-weight: bold;
+    }
+
+    /* --- تعديل ترتيب العناصر في الشاشات الصغيرة --- */
+    @media (max-width: 600px) {
+      .movie-details {
+        flex-direction: column; /* الصورة فوق والنص تحت */
+        align-items: center;    /* توسيط العناصر أفقياً */
+        text-align: center;
+      }
+
+      .movie-details img {
+        width: 100%;
+        max-width: 90%;
+        height: auto;
+      }
+
+      .details-text {
+        width: 100%;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .info, p {
+        font-size: 14px;
+      }
+
+      a.back {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -55,13 +96,11 @@
   <a href="index.html" class="back"><i class='bx bx-left-arrow-alt'></i> العودة للأفلام</a>
 
   <div id="movie-container" class="movie-details">
-    <!-- بيانات الفيلم ستظهر هنا -->
+    <!-- تفاصيل الفيلم ستُعرض هنا -->
   </div>
 
   <script>
     const apiKey = "09a550eb54cc74ae4643ac380deffd9d";
-
-    // جلب ID من الرابط
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
 
