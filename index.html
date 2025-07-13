@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>أفلام TMDB</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha512-RXf+QSDCUQs6WY2qU5WBzN66E65HyY9GpX57xGkcVAGYB1vKk9+69bYQZJgFkG5meEcCz0gHnSTrkkZyiHYwDA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+
+</head>
+<body>
+  <header>
+  <h1><i class='bx bx-film'></i> عالم الأفلام</h1>
+
+
+  
+  
+  <div class="search-container">
+    <button id="search-icon"><i class='bx bx-search'></i></button>
+
+
+
+    <input type="text" id="search-input" placeholder="ابحث عن فيلم..." />
+  </div>
+
+  <div class="category-toggle">
+    <button id="toggle-genres"><i class='bx bx-category'></i> التصنيفات</button>
+
+
+    <nav id="genres-nav" class="hidden"></nav>
+  </div>
+</header>
+
+  <div id="movies-container" class="movies-grid"></div>
+  <button id="load-more">تحميل المزيد</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

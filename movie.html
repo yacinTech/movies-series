@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>تفاصيل الفيلم</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 10px;
+      direction: rtl;
+      background: #121212;
+      color: #eee;
+    }
+    .movie-details {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .movie-details img {
+      width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
+    }
+    .details-text {
+      flex: 1;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #f39c12;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .info {
+      margin: 8px 0;
+      font-weight: bold;
+    }
+    a.back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #f39c12;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back"><i class='bx bx-left-arrow-alt'></i> العودة للأفلام</a>
+
+  <div id="movie-container" class="movie-details">
+    <!-- بيانات الفيلم ستظهر هنا -->
+  </div>
+
+  <script>
+    const apiKey = "09a550eb54cc74ae4643ac380deffd9d";
+
+    // جلب ID من الرابط
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieId = urlParams.get('id');
+
+    async function fetchMovieDetails(id) {
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=ar`);
+      const movie = await res.json();
+      displayMovie(movie);
+    }
+
+    function displayMovie(movie) {
+      const container = document.getElementById('movie-container');
+      container.innerHTML = `
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+        <div class="details-text">
+          <h1>${movie.title}</h1>
+          <div class="info">تاريخ الإصدار: ${movie.release_date || 'غير معروف'}</div>
+          <div class="info">التقييم: ⭐ ${movie.vote_average} (${movie.vote_count} صوت)</div>
+          <p>${movie.overview || "لا توجد قصة متوفرة لهذا الفيلم."}</p>
+          <div class="info">اللغة الأصلية: ${movie.original_language.toUpperCase()}</div>
+          <div class="info">مدة الفيلم: ${movie.runtime ? movie.runtime + " دقيقة" : "غير معروف"}</div>
+          <div class="info">الحالة: ${movie.status || "غير معروف"}</div>
+          <div class="info">النوع: ${movie.genres.map(g => g.name).join(', ')}</div>
+        </div>
+      `;
+    }
+
+    if (movieId) {
+      fetchMovieDetails(movieId);
+    } else {
+      document.getElementById('movie-container').innerHTML = "<p>لم يتم تحديد فيلم للعرض.</p>";
+    }
+  </script>
+</body>
+</html>

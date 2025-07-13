@@ -1,0 +1,294 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  text-align: right;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  color: white;
+  flex-wrap: wrap; /* للتجاوب مع الشاشات الصغيرة */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* العنوان مع الأيقونة */
+header h1 {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  gap: 8px;
+  white-space: nowrap;
+  margin: 0;
+}
+
+header h1 i {
+  font-size: 2.2rem;
+  color: #f39c12; /* لون برتقالي للأيقونة */
+}
+
+/* حاوية البحث */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 1; /* يسمح بالانكماش في الشاشات الضيقة */
+}
+
+/* زر البحث */
+#search-icon {
+  background: #f39c12;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* حقل البحث */
+#search-input {
+  display: none; /* مخفي افتراضياً */
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+/* زر التصنيفات */
+.category-toggle button {
+  background: #f39c12;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.category-toggle button i {
+  font-size: 1.3rem;
+}
+
+/* قائمة التصنيفات مخفية بشكل افتراضي */
+#genres-nav.hidden {
+  display: none;
+}
+
+/* استجابة بسيطة للشاشات الصغيرة */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search-container, .category-toggle {
+    width: 100%;
+    margin-top: 10px;
+  }
+  #search-input {
+    min-width: 100%;
+  }
+}
+
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+nav button {
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: #666;
+}
+
+.search-container {
+  margin-top: 10px;
+  position: relative;
+}
+
+#search-input {
+  padding: 8px;
+  width: 60%;
+  max-width: 300px;
+  margin-top: 10px;
+  display: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+#search-icon {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.movie-content {
+  padding: 15px;
+}
+
+.movie-title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.movie-info {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+#load-more {
+  margin: 20px auto;
+  display: block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#load-more:hover {
+  background: #0056b3;
+}
+
+
+/* جديد: أنيميشن التصنيفات */
+.category-toggle {
+  margin-top: 10px;
+}
+
+#toggle-genres {
+  background: #ff9800;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#toggle-genres:hover {
+  background: #e68a00;
+}
+
+#genres-nav.hidden {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+#genres-nav {
+  max-height: 500px; /* أقصى ارتفاع عند الفتح */
+  opacity: 1;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  display: flex;
+}
+
+
+#search-icon i,
+#toggle-genres i {
+  margin-left: 6px;
+}
+
+
+.movie-link {
+  text-decoration: none; /* إزالة الخط السفلي */
+  color: inherit; /* يحافظ على لون النص */
+  display: block; /* يجعل الكرت يأخذ العرض كاملاً */
+}
+
+
+@media (max-width: 600px) {
+  #genres-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #genres-nav button {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #4b6cb7;
+    color: white;
+    font-size: 0.9rem;
+    border: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  #genres-nav button:hover {
+    background: #3550a0;
+  }
+}
